@@ -13,36 +13,36 @@ const Menu = () => {
         <section className='menu-category-drinks'>
           <h2 className='category-header'>Milk Tea</h2>
           <div className='menu-item'>
-            <p>Black Milk Tea</p>
-            <p>$5.99</p>
+            <div>Black Milk Tea</div>
+            <div>$5.99</div>
           </div>
           <div className='menu-item'>
-            <p>Brown Sugar Milk Tea</p>
-            <p>$5.99</p>
+            <div>Brown Sugar Milk Tea</div>
+            <div>$5.99</div>
           </div>
           <div className='menu-item'>
-            <p>Caramel Milk Tea</p>
-            <p>$5.99</p>
+            <div>Caramel Milk Tea</div>
+            <div>$5.99</div>
           </div>
           <div className='menu-item'>
-            <p>Earl Grey Milk Tea</p>
-            <p>$5.99</p>
+            <div>Earl Grey Milk Tea</div>
+            <div>$5.99</div>
           </div>
           <div className='menu-item'>
-            <p>Earl Grey Milk Tea</p>
-            <p>$5.99</p>
+            <div>Earl Grey Milk Tea</div>
+            <div>$5.99</div>
           </div>
           <div className='menu-item'>
-            <p>Mango Milk Tea</p>
-            <p>$5.99</p>
+            <div>Mango Milk Tea</div>
+            <div>$5.99</div>
           </div>
           <div className='menu-item'>
-            <p>Oolong Milk Tea</p>
-            <p>$5.99</p>
+            <div>Oolong Milk Tea</div>
+            <div>$5.99</div>
           </div>
           <div className='menu-item'>
-            <p>Strawberry Milk Tea</p>
-            <p>$5.99</p>
+            <div>Strawberry Milk Tea</div>
+            <div>$5.99</div>
           </div>
         </section>
       </section>
