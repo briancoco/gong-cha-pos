@@ -8,14 +8,14 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
-  font-size: 1.1rem;
-  padding: 1rem;
+  font-size: 24px;
+  padding: 20px;
 }
 
 .header-section {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 20px;
 }
 
 .header-section a {
