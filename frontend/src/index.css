@@ -1,13 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Lusitana&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Lusitana';
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  padding: 1rem;
 }
+
+.header-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-section a {
+  text-decoration: none;
+  color: black;
+}
+
+.header-section a:hover {
+  color: #c60734;
+}
+
