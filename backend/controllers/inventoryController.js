@@ -40,13 +40,32 @@ const addInventory = async (req, res) => {
 
 // Put
 const updateInventoryById = async (req, res) => {
+    try {
+        let resDB = await sql`
+            UPDATE inventory SET amount= ${req.body.amount}, price=${req.body.price}, min_threshold=${req.body.min_threshold}, item_name=${req.body.item_name} WHERE id= ${req.params.id}
+        `
+        res.json(resDB);
 
+    }
+    catch (error) {
+        console.error('Error occured in updateInventoryById: ' + error.message);
+    }
 }
 
 
 // Delete
 const deleteInventoryById = async (req, res) => {
+    try {
+        let resDB = await sql`
+            DELETE FROM inventory WHERE id= ${req.params.id};
+        `
 
+        res.json(resDB);
+
+    }
+    catch (error) {
+        console.error('Error occured in deleteInventoryById: ' + error.message);
+    }
 }
 
 

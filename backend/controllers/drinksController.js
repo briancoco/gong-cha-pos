@@ -39,6 +39,14 @@ const deleteDrinksById = async (req, res) => {
 
 }
 
+const availableDrinks = async (req, res) => {
+
+}
+
+const availableCategory = async (req, res) => {
+
+}
+
 
 module.exports = {
     getDrinksAll,

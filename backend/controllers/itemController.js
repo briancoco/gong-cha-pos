@@ -39,13 +39,32 @@ const addItem = async (req, res) => {
 
 // Put
 const updateItemById = async (req, res) => {
+    // try {
+    //     let resDB = await sql`
+    //         UPDATE items SET ...
+    //     `
+    //     res.json(resDB);
 
+    // }
+    // catch (error) {
+    //     console.error('Error occured in updateItemById: ' + error.message);
+    // }
 }
 
 
 // Delete
 const deleteItemById = async (req, res) => {
+    try {
+        let resDB = await sql`
+            DELETE FROM items WHERE id= ${req.params.id};
+        `
 
+        res.json(resDB);
+
+    }
+    catch (error) {
+        console.error('Error occured in deleteItemById: ' + error.message);
+    }
 }
 
 
