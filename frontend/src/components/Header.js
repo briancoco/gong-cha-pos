@@ -10,9 +10,9 @@ const Header = () => {
             <a href='/'>Translate</a>
         </section>
         <section className='header-section'>
-            <a href='/'>Menu</a>
-            <a href='/'>Login</a>
-            <a href='/'>Cart</a>
+            <Link to='/menu'><div>Menu</div></Link>
+            <Link to='/login'><div>Login</div></Link>
+            <Link to='cart'><div>Cart</div></Link>
         </section>
     </div>
   )
