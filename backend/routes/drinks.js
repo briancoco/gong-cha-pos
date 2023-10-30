@@ -10,4 +10,7 @@ router.get('/:id', controller.getDrinksById);
 router.put('/:id', controller.updateDrinksById); //Specify formatting
 router.delete('/:id', controller.deleteDrinksById); // Specify formatting
 
+
+router.get('/availableDrinks', controller.availableDrinks); 
+
 module.exports = router;
