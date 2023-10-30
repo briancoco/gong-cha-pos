@@ -90,3 +90,66 @@ body {
   font-size: 16px;
   cursor: pointer;
 }
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-img-container {
+  display: flex;
+  gap: 3rem;
+  margin: 1rem;
+}
+
+.home-img {
+  object-fit: cover;
+  width: 350px;
+  border-radius: 3rem;
+}
+
+.order-btn {
+  font-family: 'Lusitana';
+  background-color: #c60734;
+  color: white;
+  padding: 1rem;
+  border-radius: 2rem;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
+.menu-category-img {
+  height: 350px;
+  width: auto;
+}
+
+.menu-category-container {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.menu-category-drinks {
+  width: 350px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-header {
+  font-size: 2rem;
+}
+
+ul {
+  padding: 0;
+}
+
