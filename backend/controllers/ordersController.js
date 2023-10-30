@@ -18,7 +18,17 @@ const getOrdersAll = async (req, res) => {
 };
 
 const getOrdersById = async (req, res) => {
+    try {
+        let resDB = await sql`
+            SELECT * FROM orders WHERE id = ${req.params.id};
+        `
 
+        res.json(resDB);
+
+    }
+    catch (error) {
+        console.error('Error occured in getOrdersById: ' + error.message);
+    }
 };
 
 

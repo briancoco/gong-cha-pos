@@ -18,7 +18,17 @@ const getInventoryAll = async (req, res) => {
 };
 
 const getInventoryById = async (req, res) => {
+    try {
+        let resDB = await sql`
+            SELECT * FROM inventory WHERE id = ${req.params.id};
+        `
 
+        res.json(resDB);
+
+    }
+    catch (error) {
+        console.error('Error occured in getInventoryById: ' + error.message);
+    }
 };
 
 

@@ -17,7 +17,17 @@ const getItemAll = async (req, res) => {
 };
 
 const getItemById = async (req, res) => {
+    try {
+        let resDB = await sql`
+            SELECT * FROM item WHERE id = ${req.params.id};
+        `
 
+        res.json(resDB);
+
+    }
+    catch (error) {
+        console.error('Error occured in getItemById: ' + error.message);
+    }
 };
 
 
