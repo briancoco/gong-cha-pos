@@ -57,3 +57,36 @@ body {
   margin: 1rem;
 }
 
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
+.menu-category-img {
+  height: 100%;
+  width: auto;
+}
+
+.menu-category-container {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.menu-category-drinks {
+  width: 350px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-header {
+  font-size: 2rem;
+}
+
+ul {
+  padding: 0;
+}
+
