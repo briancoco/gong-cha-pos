@@ -2,44 +2,120 @@ const sql = require('../database/dbConfig');
 const format = require('../functions');
 
 // Get
+
+// Template http://.../drinks
 const getDrinksAll = async (req, res) => {
     try {
         let resDB = await sql`
             SELECT * FROM drinks;
-        `
+        `;
 
-        res.json(resDB);
+        res.status(200).json(resDB);
 
     }
     catch (error) {
         console.error('Error occured in getDrinksAll: ' + error.message);
+        res.status(400).json({});
 
     }
 
 };
 
+// Template http://.../drinks/id
 const getDrinksById = async (req, res) => {
     try {
         let resDB = await sql`
             SELECT * FROM drinks WHERE id = ${ req.params.id };
-        `
+        `;
 
-        res.json(resDB);
+        res.status(200).json(resDB);
 
     }
     catch (error) {
         console.error('Error occured in getDrinksById: ' + error.message);
+        res.status(400).json({});
+        
+    }
+
+};
+
+// Template http://.../drinks/category/categoryName/?season=#
+// Example  http://.../drinks/category/brewed_tea/?season=3
+// Note makes assumption that all categories in database (not in query) are of form "Category Name"
+const getAvailableDrinksByCategory = async (req, res) => {
+    try {
+        let resDB = await sql`
+            SELECT * FROM drinks WHERE category = ${ format.toUpperSpace(req.params.categoryName) } AND (availability = ${ req.query.season } OR availability = -1);
+        `;
+
+        res.status(200).json(resDB);
 
     }
+    catch (error) {
+        console.error('Error occured in getAvailableDrinksByCategory: ' + error.message);
+        res.status(400).json({});
+
+    }
+
+};
+
+// Template http://.../drinks/category/?season=#
+const getAvailableDrinksCategories = async (req, res) => {
+    try {
+        let resDB = await sql`
+            SELECT DISTINCT category FROM drinks WHERE (availability = -1 OR availability = ${ req.query.season });
+        `;
+
+        res.status(200).json(resDB);
+
+    }
+    catch (error) {
+        console.error('Error occured in getAvailableDrinksCategories: ' + error.message);
+        res.status(400).json({});
+
+    }
+
 };
 
 
 // Post
+
+// Template http://.../drinks
+/*          Body   
+*            {
+*               drink_name : ...,
+*               price : ...,
+*               category : ...,
+*               availability : ...,
+*
+*               ice_cream : ...,
+*               thai_tea : ...,
+*               oreo_crumb : ...,
+*               hibiscus_tea : ...,
+*               taro_tea : ...,
+*               bag : ...,
+*               tapioca : ...,
+*               ice : ...,
+*               black_tea : ...,
+*               straw : ...,
+*               mango_jelly : ...,
+*               lychee : ...,
+*               oolong_tea : ...,
+*               napkin : ...,
+*               milk_foam : ...,
+*               sugar : ...,
+*               green_tea : ...,
+*               milk : ...,
+*               cup : ...,
+*               coconut_jelly : ...    
+*            }
+*/
+// Note: if any ingredients are not included in the body they will be set to 0
 const addDrinks = async (req, res) => {
     try {
         let ingredients = await sql`
             SELECT id, item_name FROM inventory;
-        `
+        `;
         
         let newDrink = {};
 
@@ -59,58 +135,63 @@ const addDrinks = async (req, res) => {
 
         await sql`
             INSERT INTO drinks ${ sql(newDrink) };
-        `    
+        `;
+
         res.status(200).send('Drink Added');
 
     }
     catch (error) {
         console.error('Error occured in addDrinks: ' + error.message);
+        res.status(400).json({});
 
     }
     
-}
+};
 
 
 // Put
-const updateDrinksById = async (req, res) => {
 
-}
+// Template http://.../drinks/id
+//          body { /*Only key-value pairs that are going to be changed*/ }
+const updateDrinksById = async (req, res) => {
+    try {
+        const updates = req.body;
+
+        await sql`
+            UPDATE drinks SET ${ sql(updates) } WHERE id= ${ req.params.id };
+        `;
+
+        res.status(200).send("Drink Updated");
+
+    }
+    catch (error) {
+        console.error('Error occured in updateDrinksById: ' + error.message);
+        res.status(400).json({});
+
+    }
+
+};
 
 
 // Delete
+
+// Template http://.../drinks/id
 const deleteDrinksById = async (req, res) => {
-
-}
-
-const availableDrinks = async (req, res) => {
     try {
-        let resDB = await sql`
-            SELECT * FROM drinks WHERE category = ${req.body.category} AND (availability = ${req.body.availability} OR availability = -1);
-        `
+        await sql`
+            DELETE FROM drinks WHERE id= ${ req.params.id };
+        `;
 
-        res.json(resDB);
+        res.status(200).send('Drink Deleted');
 
     }
     catch (error) {
-        console.error('Error occured in availableDrinks: ' + error.message);
+        console.error('Error occured in deleteDrinksById: ' + error.message);
+        res.status(400).json({});
 
     }
-}
 
-const availableCategory = async (req, res) => {
-    try {
-        let resDB = await sql`
-            SELECT DISTINCT category FROM drinks WHERE (availability = -1 OR availability = ${req.body.availability});
-        `
-
-        res.json(resDB);
-
-    }
-    catch (error) {
-        console.error('Error occured in availableDrinks: ' + error.message);
-
-    }
-}
+};
 
 
 module.exports = {
@@ -119,6 +200,7 @@ module.exports = {
     addDrinks,
     updateDrinksById,
     deleteDrinksById,
-    availableDrinks,
-    availableCategory
+    getAvailableDrinksByCategory,
+    getAvailableDrinksCategories,
+
 }
