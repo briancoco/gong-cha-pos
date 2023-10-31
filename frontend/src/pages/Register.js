@@ -1,15 +1,14 @@
 import React from 'react'
 import '../index.css';
-import {Link} from 'react-router-dom';
 
-const Login = () => {
-  function loginButtonClicked() {
-    console.log("Login.js: Login button clicked")
+const Register = () => {
+  function createAccountButtonClicked() {
+    console.log("Register.js: Create Account button clicked")
   }
 
   return (
     <div className="login-box">
-      <span style={{fontSize: '24px'}}>Log In</span>
+      <span style={{fontSize: '24px'}}>Register New Account</span>
       <div className="login-container">
         <input
           style={{fontFamily: "Lusitana"}}
@@ -25,12 +24,9 @@ const Login = () => {
         />
       </div>
 
-      <button onClick={loginButtonClicked} className="login-box-button">Login</button>
-      <Link to="/register" style={{textDecoration: 'none'}}>
-        <button className="create-account-box-button">Create Account</button>
-      </Link>
+      <button onClick={createAccountButtonClicked} className="create-account-box-button">Register</button>
     </div>
   )
 }
 
-export default Login
+export default Register

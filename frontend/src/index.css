@@ -8,14 +8,14 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
-  font-size: 1.1rem;
-  padding: 1rem;
+  font-size: 24px;
+  padding: 20px;
 }
 
 .header-section {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 20px;
 }
 
 .header-section a {
@@ -27,6 +27,69 @@ body {
   color: #c60734;
 }
 
+.login-box {
+  width: 400px;
+  height: 400px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.login-box-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.login-box-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-family: 'Lusitana';
+  background-color: #c60734;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.login-box-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.create-account-box-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-family: 'Lusitana';
+  background-color: #c60734;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
 .home {
   display: flex;
   flex-direction: column;
