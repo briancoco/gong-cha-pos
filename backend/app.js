@@ -5,6 +5,8 @@ const app = express();
 //packages
 require('dotenv').config();
 
+app.use(express.json());
+
 //database
 const sql = require('./database/dbConfig');
 

@@ -24,6 +24,24 @@ const getOrdersById = async (req, res) => {
 
 // Post
 const addOrders = async (req, res) => {
+    try {
+        let newOrder = {};
+
+        newOrder['total_price'] = req.body.total_price;
+        newOrder['user_id'] = req.body.user_id;
+        newOrder['time_ordered'] = req.body.time_ordered;
+
+        await sql`
+            INSERT INTO orders ${ sql(newOrder) };
+        `    
+
+        res.status(200).send('Order Added');
+        
+    }
+    catch (error) {
+        console.error('Error occured in addOrders: ' + error.message);
+
+    }
 
 }
 
