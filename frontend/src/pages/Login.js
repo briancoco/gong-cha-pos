@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../index.css';
-import {Link} from 'react-router-dom';
 
 const Login = () => {
-  function loginButtonClicked() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  async function loginButtonClicked() {
+    const response = await fetch("http://localhost:3001/users/login", {
+    "Content-type": "application/json",
+    method: "POST",
+    body: JSON.stringify({
+      user_name: username,
+      user_password: password,
+      })
+    });
+
     console.log("Login.js: Login button clicked")
   }
 
