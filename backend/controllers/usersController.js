@@ -18,7 +18,17 @@ const getUsersAll = async (req, res) => {
 };
 
 const getUsersById = async (req, res) => {
+    try {
+        let resDB = await sql`
+            SELECT * FROM users WHERE id = ${req.params.id};
+        `
 
+        res.json(resDB);
+
+    }
+    catch (error) {
+        console.error('Error occured in getUsersById: ' + error.message);
+    }
 };
 
 
@@ -49,13 +59,33 @@ const addUsers = async (req, res) => {
 
 // Put
 const updateUsersById = async (req, res) => {
+    try {
+        let resDB = await sql`
+            UPDATE users SET user_name = ${req.body.user_name}, position= ${req.body.position}, user_password= ${req.body.user_password} WHERE id= ${req.params.id}
+        `
+        res.json(resDB);
 
+    }
+    catch (error) {
+        console.error('Error occured in updateUsersById: ' + error.message);
+    }
 }
 
 
 // Delete
 const deleteUsersById = async (req, res) => {
+    // doesn't work bc id associated with other table rn
+    try {
+        let resDB = await sql`
+            DELETE FROM users WHERE id= ${req.params.id};
+        `
 
+        res.json(resDB);
+
+    }
+    catch (error) {
+        console.error('Error occured in deleteUsersById: ' + error.message);
+    }
 }
 
 
