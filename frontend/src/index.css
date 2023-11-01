@@ -3,6 +3,8 @@
 body {
   margin: 0;
   font-family: 'Lusitana';
+  height: 100vh;
+  width: 100vw;
 }
 
 .header {
@@ -153,3 +155,26 @@ ul {
   padding: 0;
 }
 
+.display-item {
+  height: 200px;
+  width: 500px;
+  display: flex;
+  border-radius: 10px;
+  align-items: center;
+  font-size: 25px;
+  gap: 50px;
+  margin: 25px;
+  box-shadow: -2.5px 2.5px 10px  grey;
+  padding: 10px;
+}
+
+.display-item-img {
+  height: 100%;
+  border-radius: 25px;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

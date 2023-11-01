@@ -1,8 +1,11 @@
 import React from 'react'
 
-const DisplayItem = () => {
+const DisplayItem = ({itemImg, itemName}) => {
   return (
-    <div>DisplayItem</div>
+    <div className='display-item'>
+        <img className='display-item-img' src={itemImg} alt={itemName} />
+        <div>{itemName}</div>
+    </div>
   )
 }
 
