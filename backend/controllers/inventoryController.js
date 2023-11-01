@@ -1,4 +1,6 @@
+const { config } = require('dotenv');
 const sql = require('../database/dbConfig');
+const format = require('../functions');
 
 // Get
 
@@ -54,6 +56,16 @@ const addInventory = async (req, res) => {
 
         await sql`
             INSERT INTO inventory ${ sql(newIngredient) };
+        `;
+
+        let colName = format.toLowerUnderscore(req.body.item_name);
+
+        await sql`
+        ALTER TABLE drinks ADD ${ sql(colName) } INT DEFAULT 0;
+        `;
+
+        await sql`
+        ALTER TABLE item ADD ${ sql(colName) } INT DEFAULT 0;
         `;
 
         res.status(200).send('Ingredient Added');
