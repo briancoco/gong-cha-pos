@@ -4,10 +4,12 @@ const app = express();
 
 //packages
 require('dotenv').config();
+const cors=require("cors");
+
+app.use(cors())
 
 app.use(express.json());
 
-app.use(express.json());
 //database
 const sql = require('./database/dbConfig');
 
