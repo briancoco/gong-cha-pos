@@ -25,14 +25,12 @@ const Login = () => {
     const data = await response.json();
 
     // Now we need to store in localstorage
-
+    
     }
     catch (error) {
       console.error("Error occurred in loginButtonClicked: " + error.message);
     }
   }
-
-  function
 
   return (
     <div className="login-box">
