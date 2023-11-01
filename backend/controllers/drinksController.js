@@ -107,7 +107,11 @@ const getAvailableDrinksCategories = async (req, res) => {
 *               green_tea : ...,
 *               milk : ...,
 *               cup : ...,
-*               coconut_jelly : ...    
+*               coconut_jelly : ...,  
+*
+*               // Optional
+*               description: ...,
+*               image: ...
 *            }
 */
 // Note: if any ingredients are not included in the body they will be set to 0
@@ -123,6 +127,9 @@ const addDrinks = async (req, res) => {
         newDrink['price'] = req.body.price;
         newDrink['category'] = req.body.category;
         newDrink['availability'] = req.body.availability || -1;
+
+        newDrink['image'] = req.body.image || 'https://gongchadev3.s3.us-east-2.amazonaws.com/Vw0hSk_285_image/png';
+        newDrink['description'] = req.body.description || 'Default Boba Tea Description';
 
         ingredients.forEach(row => {
             const currIngredient = format.toLowerUnderscore(row.item_name);
