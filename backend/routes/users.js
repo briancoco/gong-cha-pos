@@ -3,7 +3,7 @@ const controller = require('../controllers/usersController');
 
 const router = Router();
 
-router.get('/login', controller.getUsersPosition); 
+router.post('/login', controller.getUsersPosition); 
 
 router.get('/', controller.getUsersAll);
 router.post('/', controller.addUsers); 
