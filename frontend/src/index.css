@@ -201,6 +201,10 @@ ul {
   gap: 50px;
 }
 
+.drink-img {
+  height: 400px;
+}
+
 .drink-info {
   display: flex;
   flex-direction: column;

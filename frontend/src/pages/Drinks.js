@@ -5,6 +5,7 @@ import DisplayItem from '../components/DisplayItem';
 const Drinks = () => {
   const {category} = useParams();
   const [drinks, setDrinks] = useState([]);
+
   useEffect(() => {
     //get the category name
     //fetch all the drinks for the given category from the backend
@@ -21,11 +22,12 @@ const Drinks = () => {
     }
     fetchDrinks();
   }, [category])
+
   return (
     <div className='drinks'>
       {
-        drinks.map(({image, drink_name}, index) => (
-          <Link to='./drink' key={index}><DisplayItem itemImg={image} itemName={drink_name} /></Link>
+        drinks.map(({image, drink_name, id}, index) => (
+          <Link to={`./${id}`} key={index}><DisplayItem itemImg={image} itemName={drink_name} /></Link>
         ))
       }
     </div>
