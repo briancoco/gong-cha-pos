@@ -1,10 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../index.css';
-import {Link} from 'react-router-dom';
 
 const Login = () => {
-  function loginButtonClicked() {
-    console.log("Login.js: Login button clicked")
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function loginButtonClicked() {
+    try {
+      const response = await fetch("http://localhost:3001/users/login", {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify({
+        user_name: username,
+        user_password: password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Get users position error, user not found");
+      }
+
+      const data = await response.json();
+      const position = data[0].position;
+
+      // Now we need to store in localstorage
+      localStorage.setItem("user_role", position);      
+    }
+    catch (error) {
+      console.error("Error occurred in loginButtonClicked: " + error.message);
+    }
   }
 
   return (
@@ -16,12 +43,14 @@ const Login = () => {
           type="text"
           placeholder="Username"
           className="login-box-input"
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input
           style={{fontFamily: "Lusitana"}}
           type="password"
           placeholder="Password"
           className="login-box-input"
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 

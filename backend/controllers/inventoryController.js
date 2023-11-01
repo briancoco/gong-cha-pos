@@ -15,7 +15,7 @@ const getInventoryAll = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getInventoryAll: ' + error.message);
+        console.error('Error occurred in getInventoryAll: ' + error.message);
         res.status(400).json({});
 
     }
@@ -33,7 +33,7 @@ const getInventoryById = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getInventoryById: ' + error.message);
+        console.error('Error occurred in getInventoryById: ' + error.message);
         res.status(400).json({});
 
     }
@@ -72,7 +72,7 @@ const addInventory = async (req, res) => {
         
     }
     catch (error) {
-        console.error('Error occured in addInventory: ' + error.message);
+        console.error('Error occurred in addInventory: ' + error.message);
         res.status(400).json({});
 
     }
@@ -88,15 +88,15 @@ const updateInventoryById = async (req, res) => {
     try {
         const updates = req.body;
 
-        let resDB = await sql`
-            UPDATE inventory SET ${ sql(updates) } WHERE id= ${req.params.id};
+        await sql`
+            UPDATE inventory SET ${ sql(updates) } WHERE id = ${ req.params.id };
         `;
 
         res.status(200).send('Ingredient Updated');
 
     }
     catch (error) {
-        console.error('Error occured in updateInventoryById: ' + error.message);
+        console.error('Error occurred in updateInventoryById: ' + error.message);
         res.status(400).json({});
 
     }
@@ -116,7 +116,7 @@ const deleteInventoryById = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in deleteInventoryById: ' + error.message);
+        console.error('Error occurred in deleteInventoryById: ' + error.message);
         res.status(400).json({});
 
     }

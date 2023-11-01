@@ -13,7 +13,7 @@ const getItemAll = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getItemAll: ' + error.message);
+        console.error('Error occurred in getItemAll: ' + error.message);
         res.status(400).json({}); 
 
     }
@@ -31,7 +31,7 @@ const getItemById = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getItemById: ' + error.message);
+        console.error('Error occurred in getItemById: ' + error.message);
         res.status(400).json({});
 
     }
@@ -103,7 +103,7 @@ const addItem = async (req, res) => {
         
     }
     catch (error) {
-        console.error('Error occured in addItem: ' + error.message);
+        console.error('Error occurred in addItem: ' + error.message);
         res.status(400).json({});
 
     }
@@ -127,7 +127,7 @@ const updateItemById = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in updateItemById: ' + error.message);
+        console.error('Error occurred in updateItemById: ' + error.message);
         res.status(400).json({});
 
     }
@@ -148,7 +148,7 @@ const deleteItemById = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in deleteItemById: ' + error.message);
+        console.error('Error occurred in deleteItemById: ' + error.message);
         res.status(400).json({});
 
     }

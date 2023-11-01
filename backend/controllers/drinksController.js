@@ -14,7 +14,7 @@ const getDrinksAll = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getDrinksAll: ' + error.message);
+        console.error('Error occurred in getDrinksAll: ' + error.message);
         res.status(400).json({});
 
     }
@@ -32,7 +32,7 @@ const getDrinksById = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getDrinksById: ' + error.message);
+        console.error('Error occurred in getDrinksById: ' + error.message);
         res.status(400).json({});
         
     }
@@ -52,7 +52,7 @@ const getAvailableDrinksByCategory = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getAvailableDrinksByCategory: ' + error.message);
+        console.error('Error occurred in getAvailableDrinksByCategory: ' + error.message);
         res.status(400).json({});
 
     }
@@ -70,7 +70,7 @@ const getAvailableDrinksCategories = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getAvailableDrinksCategories: ' + error.message);
+        console.error('Error occurred in getAvailableDrinksCategories: ' + error.message);
         res.status(400).json({});
 
     }
@@ -141,7 +141,7 @@ const addDrinks = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in addDrinks: ' + error.message);
+        console.error('Error occurred in addDrinks: ' + error.message);
         res.status(400).json({});
 
     }
@@ -165,7 +165,7 @@ const updateDrinksById = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in updateDrinksById: ' + error.message);
+        console.error('Error occurred in updateDrinksById: ' + error.message);
         res.status(400).json({});
 
     }
@@ -186,7 +186,7 @@ const deleteDrinksById = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in deleteDrinksById: ' + error.message);
+        console.error('Error occurred in deleteDrinksById: ' + error.message);
         res.status(400).json({});
 
     }
