@@ -1,4 +1,5 @@
 const sql = require('../database/dbConfig');
+const moment = require('moment');
 
 // Get
 
@@ -39,16 +40,44 @@ const getUsersById = async (req, res) => {
 };
 
 
+// Template http://.../users/login
+//          body { user_name : ..., user_password : ... }
+// Note: used to verify users. Returns only role or {} (and 404 error) if user does not exist
+const getUsersPosition = async (req, res) => {
+    try {
+        let resDB = await sql`
+            SELECT position FROM users WHERE user_password = ${ req.body.user_password } AND user_name = ${ req.body.user_name };
+        `;
+
+        if (resDB.length) {
+            res.status(200).json(resDB);
+
+        }
+        else {
+            res.status(404).json({});
+
+        }
+
+    }
+    catch (error) {
+        console.error('Error occured in getUsersPosition: ' + error.message);
+        res.status(400).json({});
+
+    }
+    
+};
+
 // Post
 
 // Template http://.../users
 //          body { position : ..., date_hired : ..., user_name : ..., user_password : ... }
+// Note: position and date_hired are not required and are set to: "Customer" and the current datetime respectively
 const addUsers = async (req, res) => {
     try {
         let newUser = {};
 
-        newUser['position'] = req.body.position;
-        newUser['date_hired'] = req.body.date_hired;
+        newUser['position'] = req.body.position || 'Customer' ;
+        newUser['date_hired'] = req.body.date_hired || moment().format("YYYY-MM-DD");
         newUser['user_name'] = req.body.user_name;
         newUser['user_password'] = req.body.user_password;
 
@@ -120,5 +149,6 @@ module.exports = {
     addUsers,
     updateUsersById,
     deleteUsersById,
+    getUsersPosition,
 
 }
