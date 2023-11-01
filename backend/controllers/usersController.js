@@ -60,7 +60,7 @@ const getUsersPosition = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getUsersPosition: ' + error.message);
+        console.error('Error occurred in getUsersPosition: ' + error.message);
         res.status(400).json({});
 
     }
