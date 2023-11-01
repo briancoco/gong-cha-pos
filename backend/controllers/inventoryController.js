@@ -88,8 +88,8 @@ const updateInventoryById = async (req, res) => {
     try {
         const updates = req.body;
 
-        let resDB = await sql`
-            UPDATE inventory SET ${ sql(updates) } WHERE id= ${req.params.id};
+        await sql`
+            UPDATE inventory SET ${ sql(updates) } WHERE id = ${ req.params.id };
         `;
 
         res.status(200).send('Ingredient Updated');
