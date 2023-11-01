@@ -6,7 +6,9 @@ const Register = () => {
   const [password, setPassword] = useState("");
   async function createAccountButtonClicked() {
     const response = await fetch("http://localhost:3001/users", {
-      'Content-type': 'application/json',
+      headers: {
+        "Content-Type": "application/json"
+      },
       method: 'POST',
       body: JSON.stringify({
         user_name: username,

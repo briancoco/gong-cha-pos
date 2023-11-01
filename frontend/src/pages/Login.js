@@ -6,17 +6,33 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   async function loginButtonClicked() {
+    try {
     const response = await fetch("http://localhost:3001/users/login", {
-    "Content-type": "application/json",
+    headers: {
+      "Content-Type": "application/json"
+    },
     method: "POST",
     body: JSON.stringify({
       user_name: username,
       user_password: password,
-      })
+      }),
     });
 
-    console.log("Login.js: Login button clicked")
+    if (!response.ok) {
+      throw new Error("Get users position error, user not found");
+    }
+
+    const data = await response.json();
+
+    // Now we need to store in localstorage
+
+    }
+    catch (error) {
+      console.error("Error occurred in loginButtonClicked: " + error.message);
+    }
   }
+
+  function
 
   return (
     <div className="login-box">
@@ -27,12 +43,14 @@ const Login = () => {
           type="text"
           placeholder="Username"
           className="login-box-input"
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input
           style={{fontFamily: "Lusitana"}}
           type="password"
           placeholder="Password"
           className="login-box-input"
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
