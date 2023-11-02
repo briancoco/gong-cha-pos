@@ -265,6 +265,16 @@ ul {
 
 .ingredient-modifier {
   display: flex;
+  gap: 5px;
+}
+
+.adder-btn {
+  background-color: #c60734;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .cart-container {

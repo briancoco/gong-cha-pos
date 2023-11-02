@@ -17,9 +17,9 @@ const IngredientSlider = ({ingredientName, ingredientNameFormatted, quantity, se
     <div className='ingredient-slider'>
       <h5>{ingredientNameFormatted}</h5>
       <section className='ingredient-modifier'>
-        <button onClick={(e) => setCount(count > 0 ? count - 1 : 0)}>-</button>
+        <button className='adder-btn' onClick={(e) => setCount(count > 0 ? count - 1 : 0)}>-</button>
         <div>{count}</div>
-        <button onClick={(e) => setCount(count + 1)}>+</button>
+        <button className='adder-btn' onClick={(e) => setCount(count + 1)}>+</button>
       </section>
     </div>
   )
