@@ -2,6 +2,8 @@ import React from 'react'
 import IngredientSlider from './IngredientSlider'
 const Customizer = ({ingredients, setIngredients}) => {
   return (
+    <>
+    <h3>Customizations</h3>
     <div className='customizer'>
       {
         ingredients.map((ingredient, index) => (
@@ -16,6 +18,7 @@ const Customizer = ({ingredients, setIngredients}) => {
         ))
       }
     </div>
+    </>
   )
 }
 

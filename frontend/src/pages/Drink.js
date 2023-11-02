@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Customizer from '../components/Customizer';
 import { lowercaseUnderscore } from '../util/format';
-const Drink = () => {
+const Drink = ({navigate}) => {
   const {id: drinkId} = useParams();
   const [drink, setDrink] = useState({});
   const [ingredients, setIngredients] = useState([]);
@@ -28,7 +28,6 @@ const Drink = () => {
 
       let res = [];
       for(const ingredient of response) {
-        res[lowercaseUnderscore(ingredient.item_name)] = 0;
         res.push({
           itemNameFormatted: ingredient.item_name,
           itemName: lowercaseUnderscore(ingredient.item_name),
@@ -46,19 +45,45 @@ const Drink = () => {
         item.quantity = drinkInfo[item.itemName];
       }
       setIngredients(ingredientsInfo);
+      console.log(ingredientsInfo);
     }
 
     setup();
   }, [drinkId])
 
+  const handleCart = () => {
+    //constructs order item object using ingredients and drinkId
+    //fetch the current cart if it exists
+    //stores order item object in localStorage
+    const customizations = {}
+    for(const ingredient of ingredients) {
+      customizations[ingredient.itemName] = ingredient.quantity;
+    }
+    const orderItem = {
+      drink_id: drinkId,
+      image: drink.image,
+      ...customizations
+    };
+    let cart = localStorage.getItem('cart');
+    if(!cart) {
+      cart = [orderItem];
+    } else {
+      cart = JSON.parse(cart);
+      cart.push(orderItem);
+    }
+    console.log(cart);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    navigate('/cart');
+  };
+
   return (
     <div className='drink'>
       <img className='drink-img' src={drink.image} alt={drink.drink_name} />
       <section className='drink-info'>
-        <div>{drink.drink_name}</div>
+        <div className='drink-name'>{drink.drink_name}</div>
         <p>{drink.description}</p>
         <Customizer ingredients={ingredients} setIngredients={setIngredients} />
-        <button className='cart-btn'>Add to Cart</button>
+        <button className='cart-btn' onClick={handleCart}>Add to Cart</button>
       </section>
     </div>
   )

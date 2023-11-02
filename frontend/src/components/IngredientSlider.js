@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import { capitalizeSpaces } from '../util/format';
 const IngredientSlider = ({ingredientName, ingredientNameFormatted, quantity, setIngredients, ingredients}) => {
   const [count, setCount] = useState(quantity);
 
