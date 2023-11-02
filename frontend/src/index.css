@@ -210,6 +210,7 @@ ul {
   flex-direction: column;
   align-items: center;
   width: 600px;
+  height: 600px;
   border-radius: 15px;
   box-shadow: -2.5px 2.5px 10px  rgb(191, 191, 191);
 }
@@ -221,4 +222,30 @@ ul {
   border-radius: 15px;
   font-weight: bold;
   padding: 5px 20px 5px 20px;
+  margin-top: auto;
+}
+
+.customizer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 45%;
+  overflow-y: scroll;
+}
+
+.ingredient-slider {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #c60734;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.ingredient-modifier {
+  display: flex;
+  
 }
