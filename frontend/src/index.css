@@ -265,5 +265,56 @@ ul {
 
 .ingredient-modifier {
   display: flex;
-  
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart {
+  width: 600px;
+  min-height: 500px;
+  border-radius: 15px;
+  box-shadow: -2.5px 2.5px 10px  rgb(191, 191, 191);
+  overflow-y: scroll;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #d9e2ee;
+}
+
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.remove-btn {
+  background-color: white;
+  color: #c60734;
+  border: 1px solid #c60734;
+  border-radius: 15px;
+  font-weight: bold;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+}
+
+.checkout-btn {
+  background-color: #c60734;
+  color: white;
+  border: 1px solid #c60734;
+  border-radius: 15px;
+  font-weight: bold;
+  padding: 5px 25px 5px 25px;
+  cursor: pointer;
 }

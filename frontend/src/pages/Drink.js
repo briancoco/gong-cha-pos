@@ -16,6 +16,7 @@ const Drink = ({navigate}) => {
       }
       response = await response.json();
       setDrink(response[0]);
+      console.log(response[0]);
       return response[0];
     }
 
@@ -60,6 +61,7 @@ const Drink = ({navigate}) => {
       customizations[ingredient.itemName] = ingredient.quantity;
     }
     const orderItem = {
+      name: drink.drink_name,
       drink_id: drinkId,
       image: drink.image,
       ...customizations
