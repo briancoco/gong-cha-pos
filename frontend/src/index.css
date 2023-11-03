@@ -226,12 +226,12 @@ body {
 }
 
 #magnify {
-  font-size: 20px;
+  font-size: 16px;
   font-family: 'Lusitana';
-  padding: 3% 5% 3%;
+  padding: 1% 3% 1%;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.5);
 }
 
 #magnify:hover {
@@ -409,3 +409,8 @@ body {
   text-align: center;
 }
 
+#basic_text {
+  color: black;
+  font-size: 26px;
+  font-family: 'Lusitana';
+}

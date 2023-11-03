@@ -14,9 +14,9 @@ const Header = () => {
             <div id="google_translate_element"></div>
         </section>
         <section className='header-section'>
-            <Link to='/menu'><div>Menu</div></Link>
-            <Link to='/login'><div>Login</div></Link>
-            <Link to='cart'><div>Cart</div></Link>
+            <Link to='/menu'><div id="basic_text">Menu</div></Link>
+            <Link to='/login'><div id="basic_text">Login</div></Link>
+            <Link to='cart'><div id="basic_text">Cart</div></Link>
         </section>
         <MagnifyingGlass magnifyButton={magnifyButtonRef.current} />
     </div>
