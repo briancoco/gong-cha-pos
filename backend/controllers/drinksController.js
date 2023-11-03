@@ -129,7 +129,7 @@ const addDrinks = async (req, res) => {
         newDrink['availability'] = req.body.availability || -1;
 
         newDrink['image'] = req.body.image || 'https://gongchadev3.s3.us-east-2.amazonaws.com/Vw0hSk_285_image/png';
-        newDrink['description'] = req.body.description || 'Default Boba Tea Description';
+        newDrink['description'] = req.body.description || format.toUpperSpace(req.body.drink_name);
 
         ingredients.forEach(row => {
             const currIngredient = format.toLowerUnderscore(row.item_name);

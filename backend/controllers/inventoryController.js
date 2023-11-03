@@ -58,14 +58,36 @@ const addInventory = async (req, res) => {
             INSERT INTO inventory ${ sql(newIngredient) };
         `;
 
-        let colName = format.toLowerUnderscore(req.body.item_name);
+        const colName = format.toLowerUnderscore(req.body.item_name);
+
+        const currId = await sql`
+            SELECT id FROM inventory WHERE item_name = ${ req.body.item_name };
+        `;    
+
+        const id = (currId[0].id)
 
         await sql`
-        ALTER TABLE drinks ADD ${ sql(colName) } INT DEFAULT 0;
+            ALTER TABLE drinks ADD ${ sql(colName+'_id') } INT;
+        `
+
+        await sql`
+            UPDATE drinks SET ${ sql(colName+'_id') } = ${ id }; 
+        `
+
+        await sql`
+             ALTER TABLE drinks ADD ${ sql(colName) } INT DEFAULT 0;
         `;
 
         await sql`
-        ALTER TABLE item ADD ${ sql(colName) } INT DEFAULT 0;
+            ALTER TABLE item ADD ${ sql(colName+'_id') } INT;
+        `
+
+        await sql`
+            UPDATE item SET ${ sql(colName+'_id') } = ${ id }; 
+        `
+
+        await sql`
+             ALTER TABLE item ADD ${ sql(colName) } INT DEFAULT 0;
         `;
 
         res.status(200).send('Ingredient Added');
@@ -88,6 +110,32 @@ const updateInventoryById = async (req, res) => {
     try {
         const updates = req.body;
 
+        if ('item_name' in req.body) {
+
+            const currVal = await sql`
+                SELECT item_name FROM inventory WHERE id = ${ req.params.id };
+            `;
+
+            const name = currVal[0].item_name
+
+            await sql`
+                ALTER TABLE drinks RENAME COLUMN ${ sql(name+'_id') } TO ${ sql(req.body.item_name+'_id') }; 
+            `;
+
+            await sql`
+                ALTER TABLE drinks RENAME COLUMN ${ sql(name) } TO ${ sql(req.body.item_name) };
+            `;
+
+            await sql`
+                ALTER TABLE item RENAME COLUMN ${ sql(name+'_id') } TO ${ sql(req.body.item_name+'_id') };
+            `;
+
+            await sql`
+                ALTER TABLE item RENAME COLUMN ${ sql(name) } TO ${ sql(req.body.item_name) };   
+            `;
+
+        }
+
         await sql`
             UPDATE inventory SET ${ sql(updates) } WHERE id = ${ req.params.id };
         `;
@@ -108,8 +156,30 @@ const updateInventoryById = async (req, res) => {
 // Template http://.../inventory/id
 const deleteInventoryById = async (req, res) => {
     try {
-        let resDB = await sql`
-            DELETE FROM inventory WHERE id= ${ req.params.id };
+        let currIng = await sql`
+            SELECT item_name FROM inventory WHERE id = ${ req.params.id };
+        `;
+
+        const name = currIng[0].item_name;
+
+        await sql`
+            ALTER TABLE drinks DROP COLUMN ${ sql(name+'_id') };
+        `;
+
+        await sql`
+            ALTER TABLE drinks DROP COLUMN ${ sql(name) };
+        `;
+
+        await sql`
+            ALTER TABLE item DROP COLUMN ${ sql(name+'_id') };
+        `;
+
+        await sql`
+            ALTER TABLE item DROP COLUMN ${ sql(name) }
+        `;
+
+        await sql`
+            DELETE FROM inventory WHERE id = ${ req.params.id };
         `;
 
         res.status(200).send('Ingredient Deleted');
