@@ -43,7 +43,7 @@ const Drink = ({navigate}) => {
       const ingredientsInfo = await fetchIngredients();
       for(const item of ingredientsInfo) {
         
-        item.quantity = drinkInfo[item.itemName];
+        item.quantity = parseInt(drinkInfo[item.itemName]);
       }
       setIngredients(ingredientsInfo);
       console.log(ingredientsInfo);
@@ -62,7 +62,7 @@ const Drink = ({navigate}) => {
     }
     const orderItem = {
       name: drink.drink_name,
-      drink_id: drinkId,
+      drink_id: parseInt(drinkId),
       image: drink.image,
       ...customizations
     };

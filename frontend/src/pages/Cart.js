@@ -18,7 +18,19 @@ const Cart = () => {
     setCart(res);
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
+    const response = await fetch('http://localhost:3001/orders?user=1', {
+      method: 'post',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(cart)
+    });
+    if(!response.ok) {
+      console.log("Failed to checkout");
+      return;
+    }
+    console.log("Checkout success!");
     setCart([]);
     localStorage.removeItem('cart');
   }

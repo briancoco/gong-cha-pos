@@ -125,6 +125,7 @@ const addOrders = async (req, res) => {
 
         let totalPrice = 0;
         const items = req.body;
+        console.log(items);
         for (let i = 0; i < items.length; ++i) {
             let item = items[i];
 
@@ -181,6 +182,8 @@ const addOrders = async (req, res) => {
                 newDrink[currIngredient + '_id'] = row.id;
 
             });
+            delete newDrink.image;
+            delete newDrink.name;
 
             await sql`
                 INSERT INTO item ${ sql(newDrink) };
