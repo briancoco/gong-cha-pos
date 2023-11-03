@@ -14,7 +14,7 @@ const getDrinksAll = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getDrinksAll: ' + error.message);
+        console.error('Error occurred in getDrinksAll: ' + error.message);
         res.status(400).json({});
 
     }
@@ -32,7 +32,7 @@ const getDrinksById = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getDrinksById: ' + error.message);
+        console.error('Error occurred in getDrinksById: ' + error.message);
         res.status(400).json({});
         
     }
@@ -52,7 +52,7 @@ const getAvailableDrinksByCategory = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getAvailableDrinksByCategory: ' + error.message);
+        console.error('Error occurred in getAvailableDrinksByCategory: ' + error.message);
         res.status(400).json({});
 
     }
@@ -70,7 +70,7 @@ const getAvailableDrinksCategories = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in getAvailableDrinksCategories: ' + error.message);
+        console.error('Error occurred in getAvailableDrinksCategories: ' + error.message);
         res.status(400).json({});
 
     }
@@ -107,7 +107,11 @@ const getAvailableDrinksCategories = async (req, res) => {
 *               green_tea : ...,
 *               milk : ...,
 *               cup : ...,
-*               coconut_jelly : ...    
+*               coconut_jelly : ...,  
+*
+*               // Optional
+*               description: ...,
+*               image: ...
 *            }
 */
 // Note: if any ingredients are not included in the body they will be set to 0
@@ -123,6 +127,9 @@ const addDrinks = async (req, res) => {
         newDrink['price'] = req.body.price;
         newDrink['category'] = req.body.category;
         newDrink['availability'] = req.body.availability || -1;
+
+        newDrink['image'] = req.body.image || 'https://gongchadev3.s3.us-east-2.amazonaws.com/Vw0hSk_285_image/png';
+        newDrink['description'] = req.body.description || format.toUpperSpace(req.body.drink_name);
 
         ingredients.forEach(row => {
             const currIngredient = format.toLowerUnderscore(row.item_name);
@@ -141,7 +148,7 @@ const addDrinks = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in addDrinks: ' + error.message);
+        console.error('Error occurred in addDrinks: ' + error.message);
         res.status(400).json({});
 
     }
@@ -165,7 +172,7 @@ const updateDrinksById = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in updateDrinksById: ' + error.message);
+        console.error('Error occurred in updateDrinksById: ' + error.message);
         res.status(400).json({});
 
     }
@@ -186,7 +193,7 @@ const deleteDrinksById = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Error occured in deleteDrinksById: ' + error.message);
+        console.error('Error occurred in deleteDrinksById: ' + error.message);
         res.status(400).json({});
 
     }

@@ -3,6 +3,8 @@ const controller = require('../controllers/ordersController');
 
 const router = Router();
 
+router.post('/price', controller.getOrdersPrice); 
+
 router.get('/', controller.getOrdersAll);
 router.post('/', controller.addOrders); 
 

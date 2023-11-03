@@ -1,12 +1,16 @@
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
 import Register from './pages/Register';
+import Categories from './pages/Categories';
+import Drinks from './pages/Drinks';
+import Drink from './pages/Drink';
 
 function App() {
+  const navigate = useNavigate();
   return (
     <div className="App">
       <Routes>
@@ -16,6 +20,13 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/order'>
+            <Route index element={<Categories />} />
+            <Route path=':category'>
+              <Route index element={<Drinks />} />
+              <Route path=':id' element={<Drink navigate={navigate} />} />
+            </Route>
+          </Route>
         </Route>
       </Routes>
     </div>
