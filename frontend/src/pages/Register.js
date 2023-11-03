@@ -19,6 +19,8 @@ const Register = () => {
     if (!response.ok) {
       console.log("Register.js: Account creation failed");
     }
+
+    console.log("Account with username " + username + " successfully created!")
   }
 
   return (

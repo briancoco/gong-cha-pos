@@ -153,3 +153,77 @@ ul {
   padding: 0;
 }
 
+:root {
+  --scale: 1;
+  --size: 200px;
+  --scrollbar-width: 36px;
+  --handle-background: url("https://www.svgrepo.com/show/263197/magnifying-glass-search.svg");
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 18px;
+}
+
+.wrapper {
+  padding: 10%;
+}
+
+.handle {
+  position: absolute;
+  height: calc(var(--size) * 1.9);
+  width: calc(var(--size) * 1.9);
+  background: var(--handle-background);
+  background-size: contain;
+  filter: drop-shadow(-2px -2px 10px rgba(0, 0, 0, 0.5));
+}
+
+.magnifying-glass {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  height: var(--size);
+  width: var(--size);
+  border: solid 3px black;
+  background: radial-gradient(#f5fcfc 45%, gray);
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.magnifying-glass::after {
+  display: block;
+  position: relative;
+  content: "";
+  top: calc(2 * var(--size) / 3);
+  left: calc(2 * var(--size) / 3);
+  height: 15px;
+  width: 30px;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 10;
+  transform: rotate(-45deg);
+  opacity: 70%;
+}
+
+.body-clone {
+  position: absolute;
+  margin-left: 8vw;
+  padding: inherit;
+  height: 100vh;
+  width: calc(100vw - var(--scrollbar-width));
+  transform: scale(var(--scale));
+}
+
+#magnify {
+  font-family: 'Lusitana';
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+#magnify:hover {
+  color: white;
+  background-color: black;
+  box-shadow: none;
+}

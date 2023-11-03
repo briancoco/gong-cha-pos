@@ -1,4 +1,5 @@
 import React from 'react'
+import magnifyingGlass from '../components/MagnifyingGlass';
 import Tea1 from '../assets/Tea-1.png';
 import Tea2 from '../assets/Tea-2.jpg';
 import Tea3 from '../assets/Tea-3.png'
@@ -12,8 +13,8 @@ const Home = () => {
         <img className='home-img' src={Tea2} />
         <img className='home-img' src={Tea3} />
       </section>
+      
       <button className='order-btn'>Order Now</button>
-
     </div>
   )
 }

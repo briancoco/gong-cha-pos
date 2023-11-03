@@ -6,8 +6,8 @@ const Header = () => {
     <div className='header'>
         <section className='header-section'>
             <Link to='/'><img src={GongChaLogo} alt="Gong Cha Logo" width="200px"/></Link>
-            <a href='/'>Zoom</a>
-            <a href='/'>Translate</a>
+            <button id="magnify">Magnifier</button>
+            <div id="google_translate_element"></div>
         </section>
         <section className='header-section'>
             <Link to='/menu'><div>Menu</div></Link>
