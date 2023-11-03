@@ -17,7 +17,6 @@ const Drinks = () => {
         return;
       }
       response = await response.json();
-      console.log(response);
       setDrinks(response);
     }
     fetchDrinks();

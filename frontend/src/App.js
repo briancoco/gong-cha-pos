@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
@@ -10,6 +10,7 @@ import Drinks from './pages/Drinks';
 import Drink from './pages/Drink';
 
 function App() {
+  const navigate = useNavigate();
   return (
     <div className="App">
       <Routes>
@@ -23,7 +24,7 @@ function App() {
             <Route index element={<Categories />} />
             <Route path=':category'>
               <Route index element={<Drinks />} />
-              <Route path=':id' element={<Drink />} />
+              <Route path=':id' element={<Drink navigate={navigate} />} />
             </Route>
           </Route>
         </Route>

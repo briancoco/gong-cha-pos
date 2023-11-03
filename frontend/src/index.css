@@ -6,6 +6,16 @@ body {
   height: 100vh;
 }
 
+::-webkit-scrollbar {
+  height: 10px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c60734;
+  border-radius: 20px;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -198,7 +208,13 @@ ul {
 .drink {
   display: flex;
   justify-content: center;
-  gap: 50px;
+  align-items: center;
+  gap: 100px;
+}
+
+.drink-name {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .drink-img {
@@ -209,10 +225,12 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   width: 600px;
   height: 600px;
   border-radius: 15px;
   box-shadow: -2.5px 2.5px 10px  rgb(191, 191, 191);
+  padding: 10px;
 }
 
 .cart-btn {
@@ -222,7 +240,7 @@ ul {
   border-radius: 15px;
   font-weight: bold;
   padding: 5px 20px 5px 20px;
-  margin-top: auto;
+  cursor: pointer;
 }
 
 .customizer {
@@ -239,7 +257,7 @@ ul {
   width: 60%;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #c60734;
+  border: 2px solid #c60734;
   border-radius: 10px;
   padding: 5px;
   margin-bottom: 5px;
@@ -247,5 +265,72 @@ ul {
 
 .ingredient-modifier {
   display: flex;
-  
+  gap: 5px;
 }
+
+.adder-btn {
+  background-color: #c60734;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart {
+  width: 600px;
+  min-height: 500px;
+  border-radius: 15px;
+  box-shadow: -2.5px 2.5px 10px  rgb(191, 191, 191);
+  overflow-y: scroll;
+  text-align: center;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #d9e2ee;
+}
+
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.remove-btn {
+  background-color: white;
+  color: #c60734;
+  border: 1px solid #c60734;
+  border-radius: 15px;
+  font-weight: bold;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+}
+
+.checkout-btn {
+  background-color: #c60734;
+  color: white;
+  border: 1px solid #c60734;
+  border-radius: 15px;
+  font-weight: bold;
+  padding: 5px 25px 5px 25px;
+  cursor: pointer;
+}
+
+.cart-empty {
+  text-align: center;
+}
+
