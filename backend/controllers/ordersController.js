@@ -211,6 +211,89 @@ const addOrders = async (req, res) => {
 
 };
 
+// Template http://.../orders/price
+/*          body 
+*            [
+*              {
+*               drink_id : ...,
+*
+*               ice_cream: ...,
+*               thai_tea: ...,
+*               oreo_crumb: ...,
+*               hibiscus_tea: ...,
+*               taro_tea: ...,
+*               bag: ...,
+*               tapioca: ...,
+*               ice: ...,
+*               black_tea: ...,
+*               straw: ...,
+*               mango_jelly: ...,
+*               lychee: ...,
+*               oolong_tea: ...,
+*               napkin: ...,
+*               milk_foam: ...,
+*               sugar: ...,
+*               green_tea: ...,
+*               milk: ...,
+*               cup: ...,
+*               coconut_jelly: ...    
+*              },
+*              {
+*               drink_id : ...,
+*
+*               ice_cream: ...,
+*               thai_tea: ...,
+*               oreo_crumb: ...,
+*               hibiscus_tea: ...,
+*               taro_tea: ...,
+*               bag: ...,
+*               tapioca: ...,
+*               ice: ...,
+*               black_tea: ...,
+*               straw: ...,
+*               mango_jelly: ...,
+*               lychee: ...,
+*               oolong_tea: ...,
+*               napkin: ...,
+*               milk_foam: ...,
+*               sugar: ...,
+*               green_tea: ...,
+*               milk: ...,
+*               cup: ...,
+*               coconut_jelly: ...    
+*              }
+*              .
+*              .
+*              .
+*           ]
+*/
+// Note any ingredients that are not included will be set to default values of drink (free)
+// Returns json of [ { price : price }, { price : price }, ... }]
+const getOrdersPrice = async (req, res) => {
+    try {
+        const itemController = require('./itemController.js');
+        const itemPriceGetter = itemController.getItemPriceHelper;
+
+        let price = Array(req.body.length);
+        for (let i = 0; i < req.body.length; ++i) {
+            const itemPrice = await itemPriceGetter(req.body[i]);
+
+            if (itemPrice == -1) throw new Error("Issue in ItemPriceHelper")
+            price[i] = { 'price' : itemPrice };
+
+        }
+
+        res.status(200).json(price);
+
+    }
+    catch(error) {
+        console.error('Error occurred in getOrdersPrice: ' + error.message);
+        res.status(400).json({});
+
+    }
+
+}
+
 
 // Put
 
@@ -264,5 +347,6 @@ module.exports = {
     addOrders,
     updateOrdersById,
     deleteOrdersById,
+    getOrdersPrice,
 
 }
