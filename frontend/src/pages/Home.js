@@ -1,5 +1,4 @@
 import React from 'react'
-import magnifyingGlass from '../components/MagnifyingGlass';
 import Tea1 from '../assets/Tea-1.png';
 import Tea2 from '../assets/Tea-2.jpg';
 import Tea3 from '../assets/Tea-3.png'

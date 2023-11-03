@@ -28,7 +28,7 @@ const addMagnifyingGlass = () => {
   document.body.append(handle);
 };
 
-// magnifyButton.addEventListener("click", addMagnifyingGlass);
+magnifyButton.addEventListener("click", addMagnifyingGlass);
 
 const moveMagnifyingGlass = (event) => {
   let pointerX = event.pageX;

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import GongChaLogo from '../assets/Gongcha-Logo.png';
+import magnifyingGlass from './MagnifyingGlass';
+
 const Header = () => {
   return (
     <div className='header'>

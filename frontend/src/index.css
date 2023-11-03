@@ -169,7 +169,6 @@ ul {
   --scale: 1;
   --size: 200px;
   --scrollbar-width: 36px;
-  --handle-background: url("https://www.svgrepo.com/show/263197/magnifying-glass-search.svg");
 }
 
 body {
@@ -227,11 +226,11 @@ body {
 }
 
 #magnify {
-  font-family: 'Lusitana';
-  font-size: 16px;
-  border-radius: 6px;
+  font-size: 2rem;
+  padding: 3% 5% 3%;
+  border-radius: 10px;
   cursor: pointer;
-  box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.5);
 }
 
 #magnify:hover {
@@ -239,6 +238,7 @@ body {
   background-color: black;
   box-shadow: none;
 }
+
 .display-item {
   height: 200px;
   width: 500px;
