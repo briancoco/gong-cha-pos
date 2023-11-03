@@ -4,8 +4,14 @@ import CartItem from '../components/CartItem';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
+  const [userId, setUserId] = useState(0);
 
   useEffect(() => {
+    let userInfo = localStorage.getItem('user_info');
+    if(!userInfo) return;
+    userInfo = JSON.parse(userInfo);
+    setUserId(userInfo.id);
+
     let currCart = localStorage.getItem('cart');
     if(!currCart) return;
     setCart(JSON.parse(currCart));
@@ -38,7 +44,7 @@ const Cart = () => {
   return (
     <div className='cart-container'>
       {
-        cart.length ? 
+        cart.length && userId ? 
         <div className='cart'>
           {
             cart.map((cartItem, index) => (
@@ -48,8 +54,8 @@ const Cart = () => {
         </div>
         :
         <section className='cart-empty'>
-          <h1>Your cart is empty</h1>
-          <Link to='/order'><button className='order-btn'>Add Items</button></Link>
+          <h1>{userId === 0 ? 'Please Login First' : 'Your cart is empty'}</h1>
+          <Link to={userId === 0 ? '/login' : '/order'}><button className='order-btn'>{userId === 0 ? 'Login' : 'Add Item'}</button></Link>
         </section>
       }
       {cart.length > 0 && <button className='checkout-btn' onClick={handleCheckout}>Checkout</button>}

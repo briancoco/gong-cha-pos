@@ -125,7 +125,6 @@ const addOrders = async (req, res) => {
 
         let totalPrice = 0;
         const items = req.body;
-        console.log(items);
         for (let i = 0; i < items.length; ++i) {
             let item = items[i];
 
