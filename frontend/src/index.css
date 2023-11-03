@@ -226,7 +226,8 @@ body {
 }
 
 #magnify {
-  font-size: 2rem;
+  font-size: 20px;
+  font-family: 'Lusitana';
   padding: 3% 5% 3%;
   border-radius: 10px;
   cursor: pointer;
