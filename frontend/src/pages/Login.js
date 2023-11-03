@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../index.css';
 
-const Login = () => {
+const Login = ({navigate}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,10 +24,8 @@ const Login = () => {
       }
 
       const data = await response.json();
-      const position = data[0].position;
-
-      // Now we need to store in localstorage
-      localStorage.setItem("user_role", position);      
+      localStorage.setItem("user_info", JSON.stringify(data[0]));    
+      navigate('/');  
     }
     catch (error) {
       console.error("Error occurred in loginButtonClicked: " + error.message);
