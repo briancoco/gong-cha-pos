@@ -46,7 +46,7 @@ const getUsersById = async (req, res) => {
 const getUsersPosition = async (req, res) => {
     try {
         let resDB = await sql`
-            SELECT position FROM users WHERE user_password = ${ req.body.user_password } AND user_name = ${ req.body.user_name };
+            SELECT id, position FROM users WHERE user_password = ${ req.body.user_password } AND user_name = ${ req.body.user_name };
         `;
 
         if (resDB.length) {
