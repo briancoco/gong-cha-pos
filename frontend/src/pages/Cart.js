@@ -7,14 +7,46 @@ const Cart = () => {
   const [userId, setUserId] = useState(0);
 
   useEffect(() => {
-    let userInfo = localStorage.getItem('user_info');
-    if(!userInfo) return;
-    userInfo = JSON.parse(userInfo);
-    setUserId(userInfo.id);
+    const setupCart = async () => {
+      let currCart = localStorage.getItem('cart');
+      if(!currCart) return;
+      currCart = JSON.parse(currCart);
+      const formatter = Intl.NumberFormat("en-US", {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+      })
 
-    let currCart = localStorage.getItem('cart');
-    if(!currCart) return;
-    setCart(JSON.parse(currCart));
+      for(const item of currCart) {
+        let response = await fetch('http://localhost:3001/item/price', {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: 'POST',
+          body: JSON.stringify(item)
+        });
+
+        if(!response.ok) {
+          console.log('Could not fetch drink price');
+          return;
+        }
+
+        response = await response.json();
+        item.price = formatter.format(response.price);
+      }
+      console.log(currCart);
+      setCart(currCart);
+    }
+
+    const setupUser = () => {
+      let userInfo = localStorage.getItem('user_info');
+      if(!userInfo) return;
+      userInfo = JSON.parse(userInfo);
+      setUserId(userInfo.id);
+    }
+
+    setupUser();
+    setupCart();
   }, []);
 
   const removeCart = (id) => {
@@ -25,7 +57,7 @@ const Cart = () => {
   };
 
   const handleCheckout = async () => {
-    const response = await fetch('http://localhost:3001/orders?user=1', {
+    const response = await fetch(`http://localhost:3001/orders?user=${userId}`, {
       method: 'post',
       headers: {
         "Content-Type": "application/json"
@@ -48,7 +80,7 @@ const Cart = () => {
         <div className='cart'>
           {
             cart.map((cartItem, index) => (
-              <CartItem key={index} itemName={cartItem.name} itemImage={cartItem.image} onRemove={() => removeCart(cartItem.drink_id)} />
+              <CartItem key={index} itemName={cartItem.name} itemPrice={cartItem.price} itemImage={cartItem.image} onRemove={() => removeCart(cartItem.drink_id)} />
             ))
           }
         </div>

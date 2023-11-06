@@ -156,7 +156,7 @@ const getItemPrice = async (req, res) => {
 
 const getItemPriceHelper = async (body) => {
     try {
-
+        console.log(body);
         let INGREDIENTS = await sql`
             SELECT * FROM inventory;
         `;
@@ -180,7 +180,7 @@ const getItemPriceHelper = async (body) => {
             const ing =  Object.keys(localIngredients)[i];
 
             // Note: If an ingredient is not included it will be assumed to cost 0
-            if (currDrink[ing] < item[ing]) {
+            if (item[ing] !== undefined) {
                 rollingPrice += localIngredients[ing][1] * item[ing] // Price * qty
 
             }
